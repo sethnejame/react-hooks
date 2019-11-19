@@ -6,10 +6,12 @@ const App = () => {
     hits: []
   });
 
+  const [query, setQuery] = useState('redux')
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        "https://hn.algolia.com/api/v1/search?query=redux"
+        `https://hn.algolia.com/api/v1/search?query=${query}`
       );
       console.log(result.data)
       setData(result.data);
