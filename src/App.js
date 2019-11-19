@@ -16,10 +16,16 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
+      setIsError(false);
 
-      const result = await axios(url);
+      try {
+        const result = await axios(url);
 
-      setData(result.data);
+        setData(result.data);
+      } catch (error) {
+        setIsError(true);
+      }
+      
       setIsLoading(false);
     };
 
