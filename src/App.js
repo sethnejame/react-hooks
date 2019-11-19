@@ -5,10 +5,28 @@ const App = () => {
   const [data, setData] = useState({
     hits: []
   });
-  
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        "https://hn.algolia.com/api/v1/search?query=redux"
+      );
+
+      setData(result.data);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="App">
-      <h1>Hello World!</h1>
+      <ul>
+        {data.hits.map(item => (
+          <li key={data.objectID}>
+            <a href={item.url}>{item.title}</a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
