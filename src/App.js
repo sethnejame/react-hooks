@@ -6,22 +6,27 @@ const App = () => {
     hits: []
   });
 
-  const [query, setQuery] = useState('redux')
+  const [query, setQuery] = useState("redux");
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
         `https://hn.algolia.com/api/v1/search?query=${query}`
       );
-      console.log(result.data)
+      console.log(result.data);
       setData(result.data);
     };
 
     fetchData();
-  }, []);
+  }, [query]);
 
   return (
     <div className="App">
+      <input
+        type="text"
+        value={query}
+        onChange={e => setQuery(e.target.value)}
+      />
       <ul>
         {data.hits.map((item, index) => (
           <li key={index}>
