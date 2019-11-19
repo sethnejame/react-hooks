@@ -21,12 +21,15 @@ const App = () => {
   }, [query]);
 
   return (
-    <div className="App">
+    <div className="container-fluid mt-4">
+      <div className="form-group">
       <input
         type="text"
+        className="form-control"
         value={query}
         onChange={e => setQuery(e.target.value)}
       />
+      </div>
       <ul>
         {data.hits.map((item, index) => (
           <li key={index}>
