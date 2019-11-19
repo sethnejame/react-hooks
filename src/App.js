@@ -7,28 +7,36 @@ const App = () => {
   });
 
   const [query, setQuery] = useState("redux");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://hn.algolia.com/api/v1/search?query=${query}`
+        `https://hn.algolia.com/api/v1/search?query=${search}`
       );
       console.log(result.data);
       setData(result.data);
     };
 
     fetchData();
-  }, [query]);
+  }, [search]);
 
   return (
     <div className="container-fluid mt-4">
       <div className="form-group">
-      <input
-        type="text"
-        className="form-control"
-        value={query}
-        onChange={e => setQuery(e.target.value)}
-      />
+        <input
+          type="text"
+          className="form-control"
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+        />
+        <button
+          type="button"
+          className="btn btn-primary mt-4"
+          onClick={() => setSearch(query)}
+        >
+          Submit
+        </button>
       </div>
       <ul>
         {data.hits.map((item, index) => (
