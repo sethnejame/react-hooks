@@ -8,6 +8,7 @@ const App = () => {
 
   const [query, setQuery] = useState("redux");
   const [url, setUrl] = useState('https://hn.algolia.com/api/v1/search?query=redux');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
