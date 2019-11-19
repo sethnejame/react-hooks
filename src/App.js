@@ -7,19 +7,17 @@ const App = () => {
   });
 
   const [query, setQuery] = useState("redux");
-  const [search, setSearch] = useState("");
+  const [url, setUrl] = useState('https://hn.algolia.com/api/v1/search?query=redux');
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(
-        `https://hn.algolia.com/api/v1/search?query=${search}`
-      );
+      const result = await axios(url);
       console.log(result.data);
       setData(result.data);
     };
 
     fetchData();
-  }, [search]);
+  }, [url]);
 
   return (
     <div className="container-fluid mt-4">
@@ -33,7 +31,7 @@ const App = () => {
         <button
           type="button"
           className="btn btn-primary mt-4"
-          onClick={() => setSearch(query)}
+          onClick={() => setUrl(`https://hn.algolia.com/api/v1/search?query=${query}`)}
         >
           Submit
         </button>
