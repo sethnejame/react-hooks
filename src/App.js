@@ -25,7 +25,7 @@ const App = () => {
       } catch (error) {
         setIsError(true);
       }
-      
+
       setIsLoading(false);
     };
 
@@ -51,6 +51,8 @@ const App = () => {
       >
         Submit
       </button>
+      {isError && <div>Something went wrong. . .</div>}
+
       {isLoading ? (
         <div>Loading. . .</div>
       ) : (
