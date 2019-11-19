@@ -12,9 +12,12 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
+
       const result = await axios(url);
-      console.log(result.data);
+
       setData(result.data);
+      setIsLoading(false);
     };
 
     fetchData();
