@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-function App() {
+const App = () => {
+  const [data, setData] = useState({
+    hits: []
+  });
+  
   return (
     <div className="App">
       <h1>Hello World!</h1>
     </div>
   );
-}
+};
 
 export default App;
