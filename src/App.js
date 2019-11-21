@@ -24,6 +24,7 @@ const App = () => {
         setData(result.data);
       } catch (error) {
         setIsError(true);
+        console.log(error)
       }
 
       setIsLoading(false);
