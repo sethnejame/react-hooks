@@ -24,7 +24,7 @@ const App = () => {
         setData(result.data);
       } catch (error) {
         setIsError(true);
-        console.log(error)
+        console.log(error);
       }
 
       setIsLoading(false);
@@ -35,23 +35,24 @@ const App = () => {
 
   return (
     <div className="container-fluid mt-4">
-      <div className="form-group">
-        <input
-          type="text"
-          className="form-control"
-          value={query}
-          onChange={e => setQuery(e.target.value)}
-        />
-      </div>
-      <button
-        type="button"
-        className="btn btn-primary"
-        onClick={() =>
+      <form
+        onSubmit={e => {
+          e.preventDefault()
           setUrl(`https://hn.algolia.com/api/v1/search?query=${query}`)
-        }
+        }}
       >
-        Submit
-      </button>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </form>
       {isError && <div>Something went wrong. . .</div>}
 
       {isLoading ? (
