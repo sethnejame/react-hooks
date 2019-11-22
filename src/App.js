@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const App = () => {
-  const [data, setData] = useState({
-    hits: []
-  });
-
-  const [query, setQuery] = useState("redux");
+const FetchNews = () => {
+  const [data, setData] = useState({ hits: [] });
   const [url, setUrl] = useState(
     "https://hn.algolia.com/api/v1/search?query=redux"
   );
@@ -31,7 +27,14 @@ const App = () => {
     };
 
     fetchData();
-  }, [url]);
+  }, [url])
+
+  return [{ data, isLoading, isError}, setUrl]
+}
+
+const App = () => {
+  const [query, setQuery] = useState("redux");
+  const [{ data, isLoading, isError}, setUrl] = FetchNews();
 
   return (
     <div className="container-fluid mt-4">
