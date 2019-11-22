@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const FetchNews = () => {
-  const [data, setData] = useState({ hits: [] });
-  const [url, setUrl] = useState(
-    "https://hn.algolia.com/api/v1/search?query=redux"
-  );
+const FetchNews = (initialUrl, initialData) => {
+  const [data, setData] = useState(initialData);
+  const [url, setUrl] = useState(initialUrl);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -27,21 +25,26 @@ const FetchNews = () => {
     };
 
     fetchData();
-  }, [url])
+  }, [url]);
 
-  return [{ data, isLoading, isError}, setUrl]
-}
+  return [{ data, isLoading, isError }, setUrl];
+};
 
 const App = () => {
   const [query, setQuery] = useState("redux");
-  const [{ data, isLoading, isError}, setUrl] = FetchNews();
+  const [
+    { data, isLoading, isError },
+    setUrl
+  ] = FetchNews("https://hn.algolia.com/api/v1/search?query=redux", {
+    hits: []
+  });
 
   return (
     <div className="container-fluid mt-4">
       <form
         onSubmit={e => {
-          e.preventDefault()
-          setUrl(`https://hn.algolia.com/api/v1/search?query=${query}`)
+          e.preventDefault();
+          setUrl(`https://hn.algolia.com/api/v1/search?query=${query}`);
         }}
       >
         <div className="form-group">
